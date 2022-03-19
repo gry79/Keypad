@@ -85,6 +85,12 @@ void Keypad::scanKeys() {
 	for (byte r=0; r<sizeKpd.rows; r++) {
 		pin_mode(rowPins[r],INPUT_PULLUP);
 	}
+	
+	// Set pin to high impedance input.
+	for (byte c=0; c<sizeKpd.columns; c++) {
+		pin_write(columnPins[c],HIGH);
+		pin_mode(columnPins[c],INPUT);
+	}
 
 	// bitMap stores ALL the keys that are being pressed.
 	for (byte c=0; c<sizeKpd.columns; c++) {
